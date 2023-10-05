@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${title}"></title>
+</head>
+<body>
+    <div th:if="${statuses.size()} > 0">
+        <p th:each="status:${statuses}">
+            <p><strong th:text="${status.key}"></strong> is feeling <strong th:text="${status.value}"></strong></p>
+        </p>
+    </div>
+    <p th:unless="${statuses.size()} > 0">No statuses found.</p>
+</body>
+</html>
