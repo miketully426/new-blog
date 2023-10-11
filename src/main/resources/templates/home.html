@@ -6,9 +6,9 @@
 </head>
 <body>
     <div th:if="${statuses.size()} > 0">
-        <p th:each="status:${statuses}">
+        <th:block th:each="status:${statuses}">
             <p><strong th:text="${status.key}"></strong> is feeling <strong th:text="${status.value}"></strong></p>
-        </p>
+        </th:block>
     </div>
     <p th:unless="${statuses.size()} > 0">No statuses found.</p>
 </body>

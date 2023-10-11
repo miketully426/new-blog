@@ -16,7 +16,6 @@ public class BlogController {
 
     @GetMapping
     public String home(Model model){
-        statusStore.put("Test", "Sad");
         model.addAttribute("title", "Mike's Blog");
         model.addAttribute("statuses", statusStore);
         return "home";
