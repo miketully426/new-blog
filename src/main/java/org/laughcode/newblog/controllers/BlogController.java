@@ -1,8 +1,11 @@
 package org.laughcode.newblog.controllers;
 
+import org.laughcode.newblog.data.BlogData;
+import org.laughcode.newblog.models.Blog;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -12,12 +15,12 @@ import java.util.Map;
 @Controller
 public class BlogController {
 
-    private Map<String, String> statusStore = new HashMap<>();
+    private BlogData blogData = new BlogData();
 
     @GetMapping
     public String home(Model model){
         model.addAttribute("title", "Mike's Blog");
-        model.addAttribute("statuses", statusStore);
+        model.addAttribute("blogs", BlogData.getAll());
         return "home";
     }
 
@@ -27,10 +30,9 @@ public class BlogController {
     }
 
     @PostMapping("/new-post")
-    public String handlePostForm(Model model, @RequestParam String name, @RequestParam String status){
-        model.addAttribute("name", name);
-        model.addAttribute("status", status);
-        statusStore.put(name, status);
+    public String handlePostForm(Model model, @ModelAttribute Blog blog){
+        model.addAttribute("blog", blog);
+        blogData.add(blog);
         return "displayPost";
     }
 

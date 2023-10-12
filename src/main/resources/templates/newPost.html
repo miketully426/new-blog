@@ -5,10 +5,17 @@
     <title></title>
 </head>
 <body>
+    <p th:replace="fragments::navbar"></p>
+
     <form method="post">
         <label>Name:
-            <input type="text" name="name">
+            <input type="text" name="title">
         </label>
+        <br/>
+        <label>Add Content:
+            <textarea name="content" cols="50" rows="10"></textarea>
+        </label>
+        <br/>
         <label>How are you feeling?
             <input type="text" name="status">
         </label>

@@ -5,6 +5,11 @@
     <title></title>
 </head>
 <body>
-    <p><strong th:text="${name}"></strong> is feeling <strong th:text="${status}"></strong></p>
+    <p th:replace="fragments::navbar"></p>
+    <p th:replace="home::blog"></p>
+<!--    <h1 th:text="${blog.title}"></h1>-->
+<!--    <p th:text="${blog.content}"></p>-->
+<!--    <p th:text="'I am feeling ' + ${blog.status}"></p>-->
+<!--    <p th:text="${blog.time}"></p>-->
 </body>
 </html>

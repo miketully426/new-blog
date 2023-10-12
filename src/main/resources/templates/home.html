@@ -5,11 +5,17 @@
     <title th:text="${title}"></title>
 </head>
 <body>
-    <div th:if="${statuses.size()} > 0">
-        <th:block th:each="status:${statuses}">
-            <p><strong th:text="${status.key}"></strong> is feeling <strong th:text="${status.value}"></strong></p>
+    <p th:replace="fragments::navbar"></p>
+    <div th:if="${blogs.size()} > 0">
+        <th:block th:each="blog:${blogs}">
+        <div th:fragment="blog">
+            <h1 th:text="${blog.title}"></h1>
+            <p th:text="${blog.content}"></p>
+            <p th:text="${'I am feeling ' + blog.status}"></p>
+            <p th:text="${blog.time}"></p>
+        </div>
         </th:block>
     </div>
-    <p th:unless="${statuses.size()} > 0">No statuses found.</p>
+    <p th:unless="${blogs.size()} > 0">No statuses found.</p>
 </body>
 </html>
