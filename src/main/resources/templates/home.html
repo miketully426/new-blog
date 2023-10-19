@@ -11,7 +11,7 @@
         <div th:fragment="blog">
             <h1 th:text="${blog.title}"></h1>
             <p th:text="${blog.content}"></p>
-            <p th:text="${'I am feeling ' + blog.status}"></p>
+            <p th:text="${'I am feeling ' + blog.status.text}"></p>
             <p th:text="${blog.time}"></p>
         </div>
         </th:block>

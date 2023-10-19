@@ -8,18 +8,23 @@
     <p th:replace="fragments::navbar"></p>
 
     <form method="post">
-        <label>Name:
-            <input type="text" name="title">
+        <label>Title:
+            <input type="text" th:field="${blog.title}">
+            <span th:errors="${blog.title}"></span>
         </label>
         <br/>
         <label>Add Content:
-            <textarea name="content" cols="50" rows="10"></textarea>
+            <br/>
+            <textarea th:field="${blog.content}" cols="50" rows="10"></textarea>
+            <span th:errors="${blog.content}"></span>
         </label>
         <br/>
         <label>How are you feeling?
-            <input type="text" name="status">
+            <select th:field="${blog.status}">
+                <option th:each="status:${statuses}" th:text="${status.text}" th:value="${status}"></option>
+            </select>
         </label>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Post">
     </form>
 </body>
 </html>

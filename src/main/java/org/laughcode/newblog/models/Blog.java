@@ -1,5 +1,8 @@
 package org.laughcode.newblog.models;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 import java.time.LocalDate;
 
 public class Blog {
@@ -7,18 +10,27 @@ public class Blog {
     private int id;
     private static int nextId;
 
+    @NotBlank(message = "Title cannot be blank.")
+    @Size(min = 10, max = 40, message = "Title must be between 10 and 40 characters.")
     private String title;
+
+    @NotBlank(message = "Content cannot be blank.")
+    @Size(min = 5)
     private String content;
     private LocalDate time;
-    private String status;
+    private Status status;
 
-    public Blog(String title, String content, String status) {
+    public Blog(){
+        this.time = LocalDate.now();
+        this.id = nextId;
+        nextId++;
+    }
+
+    public Blog(String title, String content, Status status) {
+        this();
         this.title = title;
         this.content = content;
         this.status = status;
-        this.id = nextId;
-        nextId++;
-        this.time = LocalDate.now();
     }
 
     public int getId() {
@@ -41,11 +53,11 @@ public class Blog {
         this.content = content;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
