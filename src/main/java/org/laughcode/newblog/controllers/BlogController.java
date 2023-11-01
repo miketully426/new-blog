@@ -1,7 +1,6 @@
 package org.laughcode.newblog.controllers;
 
 import jakarta.validation.Valid;
-import org.laughcode.newblog.data.BlogData;
 import org.laughcode.newblog.models.Blog;
 import org.laughcode.newblog.models.Status;
 import org.springframework.stereotype.Controller;
