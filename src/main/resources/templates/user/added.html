@@ -5,10 +5,7 @@
     <title></title>
 </head>
 <body>
-    <div th:fragment="navbar">
-        <a href="/">Home</a>
-        <a href="/new-post">New Post</a>
-        <a href="/user">New User</a>
-    </div>
+<p th:replace="fragments::navbar"></p>
+<p th:text="${user.username + ' added as a user.'}"></p>
 </body>
 </html>
