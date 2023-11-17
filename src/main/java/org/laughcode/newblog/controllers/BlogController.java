@@ -2,6 +2,7 @@ package org.laughcode.newblog.controllers;
 
 import jakarta.validation.Valid;
 import org.laughcode.newblog.data.BlogRepository;
+import org.laughcode.newblog.data.UserRepository;
 import org.laughcode.newblog.models.Blog;
 import org.laughcode.newblog.models.Status;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class BlogController {
     @Autowired
     BlogRepository blogRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     @GetMapping
     public String home(Model model){
         model.addAttribute("title", "Mike's Blog");
@@ -38,6 +42,7 @@ public class BlogController {
     @GetMapping("/new-post")
     public String newPostForm(Model model){
         model.addAttribute(new Blog());
+        model.addAttribute("users", userRepository.findAll());
         model.addAttribute("statuses", Status.values());
         return "newPost";
     }

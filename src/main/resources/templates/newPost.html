@@ -8,6 +8,11 @@
     <p th:replace="fragments::navbar"></p>
 
     <form method="post">
+        <label>User:
+            <select th:field="${blog.user}">
+                <option th:each="user:${users}" th:text="${user.username}" th:value="${user.id}"></option>
+            </select>
+        </label>
         <label>Title:
             <input type="text" th:field="${blog.title}">
             <span th:errors="${blog.title}"></span>
