@@ -1,13 +1,12 @@
 package org.laughcode.newblog.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Blog {
@@ -20,24 +19,27 @@ public class Blog {
     @Size(min = 10, max = 40, message = "Title must be between 10 and 40 characters.")
     private String title;
 
-    @NotBlank(message = "Content cannot be blank.")
-    @Size(min = 5)
-    private String content;
     private LocalDate time;
     private Status status;
 
     @ManyToOne
     private User user;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private BlogContent blogContent;
+
+    @ManyToMany
+    private List<Tag> tags = new ArrayList<>();
+
     public Blog(){
         this.time = LocalDate.now();
     }
 
-    public Blog(String title, String content, Status status) {
+    public Blog(String title, String content, Status status, BlogContent blogContent) {
         this();
         this.title = title;
-        this.content = content;
         this.status = status;
+        this.blogContent = blogContent;
     }
 
     public int getId() {
@@ -52,14 +54,6 @@ public class Blog {
         this.title = title;
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public Status getStatus() {
         return status;
     }
@@ -70,6 +64,18 @@ public class Blog {
 
     public LocalDate getTime() {
         return time;
+    }
+
+    public BlogContent getBlogContent() {
+        return blogContent;
+    }
+
+    public void setBlogContent(BlogContent blogContent) {
+        this.blogContent = blogContent;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
 
     public User getUser() {

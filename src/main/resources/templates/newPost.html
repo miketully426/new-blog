@@ -20,14 +20,21 @@
         <br/>
         <label>Add Content:
             <br/>
-            <textarea th:field="${blog.content}" cols="50" rows="10"></textarea>
-            <span th:errors="${blog.content}"></span>
+            <textarea th:field="${blog.blogContent.content}" cols="50" rows="10"></textarea>
+            <span th:errors="${blog.blogContent.content}"></span>
         </label>
         <br/>
         <label>How are you feeling?
             <select th:field="${blog.status}">
                 <option th:each="status:${statuses}" th:text="${status.text}" th:value="${status}"></option>
             </select>
+        </label>
+        <label>Tags:
+            <th:block th:each="tag : ${tags}">
+                <input type="checkbox" name="tags" th:value="${tag.id}">
+                <label th:text="${tag.tag}"></label>
+            </th:block>
+            <a th:href="@{'/tags'}">Add Tags</a>
         </label>
         <input type="submit" value="Post">
     </form>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+    <form method="post">
+        <label>
+            Tag:
+            <input type = 'text' name = 'tag'>
+        </label>
+        <input type = 'submit' value = 'Add'>
+    </form>
+
+    <div th:if="${tags.size()} > 0">
+            <ul>
+                <li th:each="tag:${tags}" th:text="${tag.tag}"></li>
+            </ul>
+        </div>
+    <p th:unless="${tags.size()} > 0">No statuses found.</p>
+
+</body>
+</html>
